@@ -77,25 +77,6 @@ extension NavigationRouter: Router {
     }
 
     public func perform(_ popAction: PopAction, animated: Bool, completion: (() -> Void)? = nil) {
-        var animated = animated
-        
-        if animated {
-            CATransaction.begin()
-            CATransaction.setCompletionBlock(completion)
-        }
-        
-        switch animation {
-        case .easeInEaseOut where animated == true:
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-            transition.type = .fade
-            animated = false
-            navigationController.view.layer.add(transition, forKey: nil)
-        default:
-            break
-        }
-
         switch popAction {
         case .toViewController(let viewController):
             navigationController.popToViewController(viewController, animated: animated)
@@ -104,12 +85,8 @@ extension NavigationRouter: Router {
         case .toParent:
             navigationController.popViewController(animated: animated)
         }
-        
-        if animated {
-            CATransaction.commit()
-        } else {
-            completion?()
-        }
+
+        completion?()
     }
 
     @inlinable
