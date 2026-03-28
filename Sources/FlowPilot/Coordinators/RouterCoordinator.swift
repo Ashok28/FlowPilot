@@ -31,7 +31,6 @@ open class RouterCoordinator: Coordinator {
         super.init()
     }
 
-    @inlinable
     open func coordinate<Response>(to coordinator: sending ResponseRouterCoordinator<Response>, animated: Bool = true)
     -> ResponseHandler<Response>
     {
