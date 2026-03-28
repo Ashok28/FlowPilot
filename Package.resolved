@@ -1,5 +1,5 @@
 {
-  "originHash" : "6fe24bd31f36709bfd39b52f36a18bc28d5aea7acf39e7f34f9c4c545b46f242",
+  "originHash" : "07739d7862ea52ccf32ec29861248fe81fcf7df515f71cd3d4c57a637f4cbbcc",
   "pins" : [
     {
       "identity" : "cleeviocore",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scenee/FloatingPanel",
       "state" : {
-        "revision" : "d5177203c08e01a7ffe07c8cccf3d19123db89d2",
-        "version" : "3.0.0"
+        "revision" : "1d2e3a0304d5d56bae7d0c0bb861921374390bb0",
+        "version" : "2.8.8"
       }
     },
     {

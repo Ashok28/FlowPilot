@@ -3,8 +3,6 @@
 
 import PackageDescription
 
-let swiftSettings: [SwiftSetting] = [ ]
-
 let package = Package(
     name: "FlowPilot",
     platforms: [
@@ -18,9 +16,9 @@ let package = Package(
         .library(name: "FlowPilotLegacyCombineCoordinators", targets: ["FlowPilotLegacyCombineCoordinators"])
     ],
     dependencies: [
-        .package(url: "https://github.com/cleevio/CleevioCore.git", .upToNextMajor(from: "2.0.0")),
-        .package(url: "https://github.com/scenee/FloatingPanel", "2.6.0"..<"3.1.0"),
-        .package(url: "https://github.com/apple/swift-collections", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/cleevio/CleevioCore", from: "2.0.0"),
+        .package(url: "https://github.com/scenee/FloatingPanel", "2.6.0"..<"4.0.0"),
+        .package(url: "https://github.com/apple/swift-collections", from: "1.0.0")
     ],
     targets: [
         .target(
@@ -28,24 +26,19 @@ let package = Package(
             dependencies: [
                 .product(name: "CleevioCore", package: "CleevioCore"),
                 .product(name: "OrderedCollections", package: "swift-collections")
-            ],
-            swiftSettings: swiftSettings
+            ]
         ),
         .target(name: "FlowPilotFloatingRouters", dependencies: [
             "FlowPilot",
             .product(name: "FloatingPanel", package: "FloatingPanel", condition: .when(platforms: [.iOS, .macCatalyst]))
-        ],
-                swiftSettings: swiftSettings
-               ),
+        ]),
         .target(name: "FlowPilotLegacyCombineCoordinators", dependencies: [
             "FlowPilot",
             .product(name: "CleevioCore", package: "CleevioCore")
-        ]
-               ),
+        ]),
         .testTarget(
             name: "FlowPilotTests",
-            dependencies: ["FlowPilot"],
-            swiftSettings: swiftSettings
+            dependencies: ["FlowPilot"]
         ),
     ],
     swiftLanguageModes: [.v5, .v6]
